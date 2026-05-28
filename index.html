@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>투표 웹</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>우리 반 투표</h1>
+        </div>
+        <div class="top-actions">
+          <button id="resultBtn" class="ghost-button" type="button" hidden>결과 보기</button>
+          <button id="voteAgainTopBtn" class="ghost-button" type="button" hidden>투표 다시 하기</button>
+          <button id="resetBtn" class="danger-button" type="button" hidden>리셋</button>
+        </div>
+      </header>
+
+      <main>
+        <section id="setupView" class="view">
+          <div class="setup-layout">
+            <div class="intro-panel">
+              <div class="poster-cloud cloud-a"></div>
+              <div class="poster-cloud cloud-b"></div>
+              <div class="poster-cloud cloud-c"></div>
+              <div class="poster-title">
+                <span>첫번째 선거날</span>
+                <strong>우리 반 꼬마 대장은?</strong>
+              </div>
+              <div class="ballot-scene" aria-hidden="true">
+                <div class="ballot-hand"></div>
+                <div class="ballot-paper">
+                  <span>1</span>
+                </div>
+              </div>
+              <div class="cityline" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <form id="setupForm" class="setup-form">
+              <label class="field-label" for="candidateCount">후보 개수</label>
+              <div class="count-row">
+                <button id="decreaseBtn" class="icon-button" type="button" aria-label="후보 개수 줄이기">-</button>
+                <input id="candidateCount" type="number" min="1" max="30" value="3" inputmode="numeric" />
+                <button id="increaseBtn" class="icon-button" type="button" aria-label="후보 개수 늘리기">+</button>
+              </div>
+
+              <div class="candidate-list-header">
+                <span>기호</span>
+                <span>내용</span>
+              </div>
+              <div id="candidateFields" class="candidate-fields"></div>
+
+              <button class="primary-button start-button" type="submit">투표 시작</button>
+            </form>
+          </div>
+        </section>
+
+        <section id="voteView" class="view" hidden>
+          <div id="voteReady">
+            <div class="section-heading">
+              <h2>하나만 눌러 투표하세요</h2>
+            </div>
+
+            <div id="voteCards" class="vote-grid"></div>
+          </div>
+
+          <div id="completeView" class="complete-view" hidden>
+            <div class="complete-badge">완료</div>
+            <h2>투표하였습니다.</h2>
+            <button id="nextVoterBtn" class="primary-button" type="button">다음 사람</button>
+          </div>
+        </section>
+
+        <section id="resultView" class="view" hidden>
+          <div class="section-heading">
+            <h2>당첨자 발표</h2>
+          </div>
+
+          <div id="winnerPanel" class="winner-panel"></div>
+
+          <div class="result-actions">
+            <button id="detailResultsBtn" class="primary-button" type="button">자세한 결과 보기</button>
+          </div>
+
+          <div id="resultDetails" class="result-details" hidden>
+            <div class="result-summary">
+              <div>
+                <span>총 투표수</span>
+                <strong id="totalVotes">0</strong>
+              </div>
+            </div>
+
+            <div id="resultList" class="result-list"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
